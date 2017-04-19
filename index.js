@@ -4,7 +4,7 @@ function getFirstSelector(selector){
 }
 
 function nestedTarget(){
-  //pulls .target out of #nested 
+  //pulls .target out of #nested
   return document.querySelector('#nested .target')
 }
 
@@ -20,11 +20,16 @@ function increaseRankBy(n){
 
 function deepestChild(){
   //pulls out most deeply nested child from div#grand-node
-  var children = document.querySelectorAll('div#grand-node')
-  var childrenArray = []
-  for(var x = 0; x < children.length; x++){
-    childrenArray.push(children[x])
+  var currentElement = document.querySelector('div#grand-node')
+  var nextElement = currentElement.children[0]
+  while (nextElement){
+    currentElement = nextElement
+    nextElement = currentElement.children[0]
   }
-  var index = childrenArray.length - 1
-  return children[index]
+  return currentElement
+  
+  //solution without looping over elements
+  //var children = document.querySelectorAll('div#grand-node')
+  //var index = children.length - 1
+  //return children[index]
 }
